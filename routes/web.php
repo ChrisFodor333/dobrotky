@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', array('uses' => 'App\\Http\\Controllers\HomeController@dashboard'));
 Route::post('/signin', array('uses' => 'App\\Http\\Controllers\HomeController@dologin'));
-
+Route::get('/logout', array('uses' => 'App\\Http\\Controllers\HomeController@logout'));
 
 Route::post('reset_password_without_token', 'App\\Http\\Controllers\HomeController@validatePasswordRequest');
 

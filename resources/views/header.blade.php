@@ -147,7 +147,7 @@
 
               <!--begin::Menu item-->
               <div class="menu-item px-5">
-                <a href="<?php echo url('/admin/logout');?>" class="menu-link px-5">Odhlásiť sa</a>
+                <a href="<?php echo url('/logout');?>" class="menu-link px-5">Odhlásiť sa</a>
               </div>
               <!--end::Menu item-->
               <!--begin::Menu separator-->

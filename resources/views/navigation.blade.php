@@ -103,7 +103,7 @@
         </div>
 
 								<div class="menu-item">
-          			<a class="menu-link" href="<?php echo url('/admin/logout');?>" title="Odhlásenie sa z aplikácie" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+          			<a class="menu-link" href="<?php echo url('/logout');?>" title="Odhlásenie sa z aplikácie" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
             		<span class="menu-icon">
               <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
               	<span class="svg-icon svg-icon-2">

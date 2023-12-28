@@ -65,7 +65,7 @@ class HomeController extends Controller
 
   public function logout(Request $request) {
       $request->session()->forget('admin');
-      return redirect('/admin');
+      return redirect('/');
     }
 
   public function dologin() {
