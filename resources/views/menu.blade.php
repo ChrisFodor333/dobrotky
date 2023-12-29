@@ -1,5 +1,21 @@
 @include('header')
 
+<style>
+.responsive-iframe {
+		 position: relative;
+		 width: 100%;
+		 padding-top: 56.25%; /* This is for a 16:9 aspect ratio, adjust as needed */
+ }
+
+ .responsive-iframe iframe {
+		 position: absolute;
+		 top: 0;
+		 left: 0;
+		 width: 100%;
+		 height: 100%;
+ }
+</style>
+
 	<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
 		<!--begin::Main-->
 		<!--begin::Root-->
@@ -82,7 +98,9 @@
 									<!--begin::Card body-->
 									<div class="card-body">
 										<div class="text-gray-900 fs-2 fw-bolder me-1 mb-2">Aktuálne menu:</div>
-												<iframe src ="{{ asset('test.pdf') }}" width="1200px" height="1000px"></iframe>
+										<div class="responsive-iframe">
+											<iframe src ="{{ asset('storage/menu.pdf') }}" style="max-width: 1200px; max-height: 1000px;"></iframe>
+										</div>
 										<table id="kt_file_manager_list" data-kt-filemanager-table="files" style="display: none !important;" class="table align-middle table-row-dashed fs-6 gy-5">
 										</table>
 										<!--end::Table-->

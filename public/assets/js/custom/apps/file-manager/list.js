@@ -1,3 +1,4 @@
+"use strict";
 var KTFileManagerList = (function () {
     var e, t, o, n, r, a;
     const l = () => {
@@ -218,42 +219,50 @@ var KTFileManagerList = (function () {
                             }, 300);
                         }),
                         t.querySelector(".dropzone-upload").addEventListener("click", function () {
-                            r.files.forEach((file) => {
-                               const progressBar = file.previewElement.querySelector(".progress-bar");
-                               const fileName = file.name;
-                               progressBar.style.opacity = "1";
-                               let progress = 1;
+                          r.files.forEach((file) => {
+                           const progressBar = file.previewElement.querySelector(".progress-bar");
+                           progressBar.style.opacity = "1";
 
-                               const interval = setInterval(function () {
-                                   if (progress >= 100) {
-                                       r.emit("success", file, fileName); // Emit "success" event with file and fileName
-                                       r.emit("complete", file, fileName); // Emit "complete" event with file and fileName
-                                       clearInterval(interval);
+                           // Extract relevant information from the Dropzone file object
+                           const formData = new FormData();
+                           formData.append('file', file);
 
-                                               // Pass the file to a Laravel function via AJAX
-                                               $.ajax({
-                                                   url: 'http://localhost/dobrotky/public/addmenu',
-                                                   type: 'POST',
-                                                   data: {
-                                                       file: file,
-                                                       fileName: fileName,
-                                                       // Add any other data you need to send along with the file
-                                                   },
-                                                   success: function (response) {
-                                                       // Handle the response, if needed
-                                                       console.log("Success",response);
-                                                   },
-                                                   error: function (error) {
-                                                       // Handle errors, if needed
-                                                       console.error("Error",error);
-                                                   }
-                                               });
-                                           } else {
-                                               progress++;
-                                               progressBar.style.width = progress + "%";
-                                           }
-                                       }, 20);
-                            });
+
+
+                           let progress = 1;
+                           const interval = setInterval(function () {
+                               if (progress >= 100) {
+                                   r.emit("success", file);
+                                   r.emit("complete", file);
+                                   clearInterval(interval);
+                                   $.ajax({
+                                       url: 'http://localhost/dobrotky/public/addmenu',
+                                       type: 'POST',
+                                       data: formData,
+                                       processData: false,  // Don't process the data (already FormData)
+                                       contentType: false,  // Don't set content type (browser will set it)
+                                       headers: {
+                                           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                       },
+                                       success: function(response) {
+                                           // Handle the response
+                                           console.log(response);
+                                           if (response.redirect_url) {
+                                                // Redirect to the specified URL
+                                                window.location.href = response.redirect_url;
+                                            }
+                                       },
+                                       error: function(error) {
+                                           // Handle errors
+                                           console.error(error);
+                                       }
+                                   });
+                               } else {
+                                   progress++;
+                                   progressBar.style.width = progress + "%";
+                               }
+                           }, 20);
+                       });
                         }),
                         t.querySelector(".dropzone-remove-all").addEventListener("click", function () {
                             Swal.fire({

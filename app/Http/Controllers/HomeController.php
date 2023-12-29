@@ -287,10 +287,11 @@ class HomeController extends Controller
 
                 // Store the uploaded file in the storage
                 $file = $request->file('file');
-                $filePath = $file->store('public');
+                // Store the file with a specific name in the storage/app/public directory
+                $filePath = $file->storeAs('public', 'menu.pdf');
 
-                // You can save the file path to the database or perform other operations
-                return Redirect::to('/menu');
+
+                 return response()->json(['redirect_url' => 'http://localhost/dobrotky/public/menu']);
               }
             }
 
