@@ -286,8 +286,8 @@ class HomeController extends Controller
                 ]);
 
                 // Store the uploaded file in the storage
-                $uploadedFile = $request->file('file');
-                $path = $uploadedFile->store('uploads'); // 'uploads' is a directory within the storage/app directory
+                $file = $request->file('file');
+                $filePath = $file->store('public');
 
                 // You can save the file path to the database or perform other operations
                 return Redirect::to('/menu');

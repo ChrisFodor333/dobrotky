@@ -1,13 +1,10 @@
 "use strict";
-const fruits = [];
+var fruits = [];
 fruits.push(1,2,3,4,5,6);
 
-const vegetables = [];
+var vegetables = [];
 vegetables.push(1,2,30,4,5,6);
 
-$.get('http://localhost/market/public/superuser/chart/', function(data) {
- 
-});
 
 var KTWidgets = {
     init: function () {

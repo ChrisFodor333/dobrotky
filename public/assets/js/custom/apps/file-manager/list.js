@@ -1,4 +1,3 @@
-"use strict";
 var KTFileManagerList = (function () {
     var e, t, o, n, r, a;
     const l = () => {
@@ -117,7 +116,7 @@ var KTFileManagerList = (function () {
             });
         },
         f = () => {
-            document.getElementById("kt_file_manager_items_counter").innerText = e.rows().count() + " items";
+            //document.getElementById("kt_file_manager_items_counter").innerText = e.rows().count() + " items";
         };
     return {
         init: function () {
@@ -219,13 +218,41 @@ var KTFileManagerList = (function () {
                             }, 300);
                         }),
                         t.querySelector(".dropzone-upload").addEventListener("click", function () {
-                            r.files.forEach((e) => {
-                                const t = e.previewElement.querySelector(".progress-bar");
-                                t.style.opacity = "1";
-                                var o = 1,
-                                    n = setInterval(function () {
-                                        o >= 100 ? (r.emit("success", e), r.emit("complete", e), clearInterval(n)) : (o++, (t.style.width = o + "%"));
-                                    }, 20);
+                            r.files.forEach((file) => {
+                               const progressBar = file.previewElement.querySelector(".progress-bar");
+                               const fileName = file.name;
+                               progressBar.style.opacity = "1";
+                               let progress = 1;
+
+                               const interval = setInterval(function () {
+                                   if (progress >= 100) {
+                                       r.emit("success", file, fileName); // Emit "success" event with file and fileName
+                                       r.emit("complete", file, fileName); // Emit "complete" event with file and fileName
+                                       clearInterval(interval);
+
+                                               // Pass the file to a Laravel function via AJAX
+                                               $.ajax({
+                                                   url: 'http://localhost/dobrotky/public/addmenu',
+                                                   type: 'POST',
+                                                   data: {
+                                                       file: file,
+                                                       fileName: fileName,
+                                                       // Add any other data you need to send along with the file
+                                                   },
+                                                   success: function (response) {
+                                                       // Handle the response, if needed
+                                                       console.log("Success",response);
+                                                   },
+                                                   error: function (error) {
+                                                       // Handle errors, if needed
+                                                       console.error("Error",error);
+                                                   }
+                                               });
+                                           } else {
+                                               progress++;
+                                               progressBar.style.width = progress + "%";
+                                           }
+                                       }, 20);
                             });
                         }),
                         t.querySelector(".dropzone-remove-all").addEventListener("click", function () {
