@@ -86,7 +86,7 @@ padding: 0rem;
 									<!--begin::Card body-->
                   <div class="card-body pt-0 pb-5">
                       <!--begin::Table-->
-                      <form class="form" id="myForm" method="post" novalidate="novalidate" action="<?php echo url('/customeradded'); ?>">
+                      <form class="form" id="myForm" method="post" novalidate="novalidate" action="<?php echo url('/editedcustomer'); ?>">
                   <!--end::Top-->
                   <!--begin::Separator-->
                   <div class="separator separator-dashed my-10 myseparator"></div>
@@ -98,14 +98,14 @@ padding: 0rem;
                       <div class="col-lg-6">
                         <div class="mb-5">
                           <label class="d-flex align-items-center fs-5 fw-bold mb-2 required">Meno</label>
-                          <input type="text" required class="form-control form-control-solid" placeholder="Meno" name="fname" value="{{ old('fname') }}" />
+                          <input type="text" required class="form-control form-control-solid" placeholder="Meno" name="fname" value="{{ $customer->fname }}" />
                         </div>
                       </div>
 
                       <div class="col-lg-6">
                         <div class="mb-5">
                           <label class="d-flex align-items-center fs-5 fw-bold mb-2 required">Priezvisko</label>
-                          <input type="text" required class="form-control form-control-solid" placeholder="Priezvisko" name="lname" value="{{ old('lname') }}" />
+                          <input type="text" required class="form-control form-control-solid" placeholder="Priezvisko" name="lname" value="{{ $customer->lname }}" />
                         </div>
                       </div>
                     </div>
@@ -127,8 +127,13 @@ padding: 0rem;
                         <div class="mb-5">
                           <label class="d-flex align-items-center fs-5 fw-bold mb-2">Pohlavie</label>
                           <select  name="gender" aria-label="Výber pohlavia" data-placeholder="Výber pohlavia..." class="form-select form-select-solid fw-bold">
+                            @if($customer->gender == "Žena")
+                            <option value="Muž">Muž</option>
+                            <option selected value="Žena">Žena</option>
+                            @else
                             <option selected value="Muž">Muž</option>
                             <option value="Žena">Žena</option>
+                            @endif
                           </select>
                         </div>
                       </div>
@@ -138,7 +143,7 @@ padding: 0rem;
                       <div class="col-lg-6">
                         <div class="mb-5">
                           <label class="d-flex align-items-center fs-5 fw-bold mb-2 required">Email</label>
-                          <input type="email" required class="form-control form-control-solid" placeholder="Email" name="email" value="{{ old('email') }}" />
+                          <input type="email" required class="form-control form-control-solid" placeholder="Email" name="email" value="{{ $customer->email }}" />
                         </div>
                       </div>
                     </div>
@@ -148,14 +153,14 @@ padding: 0rem;
                       <div class="col-lg-6">
                         <div class="mb-5">
                           <label class="d-flex align-items-center fs-5 fw-bold mb-2">Tel. číslo</label>
-                          <input type="text" class="form-control form-control-solid" placeholder="Tel. číslo" name="phone" value="{{ old('phone') }}" />
+                          <input type="text" class="form-control form-control-solid" placeholder="Tel. číslo" name="phone" value="{{ $customer->mobil }}" />
                         </div>
                       </div>
 
                       <div class="col-lg-6">
                         <div class="mb-5">
                           <label class="d-flex align-items-center fs-5 fw-bold mb-2">Cieľ (kg)</label>
-                          <input type="number" class="form-control form-control-solid" placeholder="Cieľ" name="goal" value="{{ old('goal') }}" />
+                          <input type="number" class="form-control form-control-solid" placeholder="Cieľ" name="goal" value="{{ $customer->goal }}" />
                         </div>
                       </div>
                     </div>
@@ -165,7 +170,7 @@ padding: 0rem;
                         <div class="mb-5">
                           <label class="d-flex align-items-center fs-5 fw-bold mb-2">Okres</label>
                           <select  name="city" aria-label="Výber okresu" data-placeholder="Výber okresu..." class="form-select form-select-solid fw-bold">
-                            @if(old('city') == "NR")
+                            @if($customer->city == "NR")
                             <option value="LV">LV</option>
                             <option selected value="NR">NR</option>
                             @else
@@ -180,7 +185,7 @@ padding: 0rem;
                       <div class="col-lg-6">
                         <div class="mb-5">
                           <label class="d-flex align-items-center fs-5 fw-bold mb-2">Vek</label>
-                          <input type="number" class="form-control form-control-solid" placeholder="Vek" name="age" value="{{ old('age') }}" />
+                          <input type="number" class="form-control form-control-solid" placeholder="Vek" name="age" value="{{ $customer->age }}" />
                         </div>
                       </div>
                     </div>
@@ -189,14 +194,14 @@ padding: 0rem;
                       <div class="col-lg-6">
                         <div class="mb-5">
                           <label class="d-flex align-items-center fs-5 fw-bold mb-2">Výška</label>
-                          <input type="number" class="form-control form-control-solid" placeholder="Výška" name="height" value="{{ old('height') }}" />
+                          <input type="number" class="form-control form-control-solid" placeholder="Výška" name="height" value="{{ $customer->height }}" />
                         </div>
                       </div>
 
                       <div class="col-lg-6">
                         <div class="mb-5">
                           <label class="d-flex align-items-center fs-5 fw-bold mb-2">Váha</label>
-                          <input type="number" class="form-control form-control-solid" placeholder="Váha" name="weight" value="{{ old('weight') }}" />
+                          <input type="number" class="form-control form-control-solid" placeholder="Váha" name="weight" value="{{$customer->weight }}" />
                         </div>
                       </div>
                     </div>
@@ -205,14 +210,14 @@ padding: 0rem;
                       <div class="col-lg-6">
                         <div class="mb-5">
                           <label class="d-flex align-items-center fs-5 fw-bold mb-2">Miery - Boky</label>
-                          <input type="number" class="form-control form-control-solid" placeholder="Boky" name="boky" value="{{ old('boky') }}" />
+                          <input type="number" class="form-control form-control-solid" placeholder="Boky" name="boky" value="{{ $customer->boky }}" />
                         </div>
                       </div>
 
                       <div class="col-lg-6">
                         <div class="mb-5">
                           <label class="d-flex align-items-center fs-5 fw-bold mb-2">Miery - Pás</label>
-                          <input type="number" class="form-control form-control-solid" placeholder="Pás" name="pas" value="{{ old('pas') }}" />
+                          <input type="number" class="form-control form-control-solid" placeholder="Pás" name="pas" value="{{ $customer->pas }}" />
                         </div>
                       </div>
                     </div>
@@ -221,14 +226,14 @@ padding: 0rem;
                       <div class="col-lg-6">
                         <div class="mb-5">
                           <label class="d-flex align-items-center fs-5 fw-bold mb-2">Miery - Stehno</label>
-                          <input type="number" class="form-control form-control-solid" placeholder="Stehno" name="stehno" value="{{ old('stehno') }}" />
+                          <input type="number" class="form-control form-control-solid" placeholder="Stehno" name="stehno" value="{{ $customer->stehno }}" />
                         </div>
                       </div>
 
                       <div class="col-lg-6">
                         <div class="mb-5">
                           <label class="d-flex align-items-center fs-5 fw-bold mb-2">Alergie</label>
-                          <input type="text" class="form-control form-control-solid" placeholder="Alergie" name="alergies" value="{{ old('alergies') }}" />
+                          <input type="text" class="form-control form-control-solid" placeholder="Alergie" name="alergies" value="{{ $customer->alergies }}" />
                         </div>
                       </div>
                     </div>
@@ -237,7 +242,7 @@ padding: 0rem;
                       <div class="col-lg-6">
                         <div class="mb-5">
                           <label class="d-flex align-items-center fs-5 fw-bold mb-2">Pohybová aktivita</label>
-                          <input type="text" class="form-control form-control-solid" placeholder="Pohybová aktivita" name="activity" value="{{ old('activity') }}" />
+                          <input type="text" class="form-control form-control-solid" placeholder="Pohybová aktivita" name="activity" value="{{ $customer->activity }}" />
                         </div>
                       </div>
 
@@ -246,7 +251,7 @@ padding: 0rem;
                         <div class="mb-5">
                           <label class="d-flex align-items-center fs-5 fw-bold mb-2">InBody Meranie</label>
                           <select  name="inbody" aria-label="InBody meranie" data-placeholder="InBody meranie" class="form-select form-select-solid fw-bold">
-                            @if(old('inbody') == 1)
+                            @if($customer->inbody == 1)
                             <option value="0">Nie</option>
                             <option selected value="1">Áno</option>
                             @else
@@ -263,7 +268,7 @@ padding: 0rem;
                         <div class="mb-5">
                           <label class="d-flex align-items-center fs-5 fw-bold mb-2">Spôsob života</label>
                           <select name="lifestyle" aria-label="InBody meranie" data-placeholder="InBody meranie" class="form-select form-select-solid fw-bold">
-                            @if(old('lifestyle') == "Aktívne zamestnanie")
+                            @if($customer->lifestyle == "Aktívne zamestnanie")
                             <option value="Sedavé zamestnanie">Sedavé zamestnanie</option>
                             <option selected value="Aktívne zamestnanie">Aktívne zamestnanie</option>
                             @else
@@ -278,7 +283,7 @@ padding: 0rem;
                         <div class="mb-5">
                           <label class="d-flex align-items-center fs-5 fw-bold mb-2">Spôsob úhrady</label>
                           <select  name="payment" class="form-select form-select-solid fw-bold">
-                          @if(old('payment') == "Faktúra")
+                          @if($customer->payment == "Faktúra")
                             <option value="Hotovosť">Hotovosť</option>
                             <option selected value="Faktúra">Faktúra</option>
                           @else
@@ -297,7 +302,7 @@ padding: 0rem;
                       <div class="col-lg-12">
                         <div class="mb-5">
                           <label class="d-flex align-items-center fs-5 fw-bold mb-2">Poznámka</label>
-                          <textarea class="form-control form-control-solid" name="note">{{ old('note') }}</textarea>
+                          <textarea class="form-control form-control-solid" name="note">{{ $customer->note }}</textarea>
                         </div>
                       </div>
 
@@ -307,7 +312,8 @@ padding: 0rem;
 
                       </div>
                     <div class="mb-0 ">
-                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                          <input type="hidden" name="id" value="{{ $customer->id }}">
                           <button type="submit" id="stepper2" class="btn btn-lg btn-primary" style="float:right !important;">Odoslať</button>
                       <br> <br> <br>
                     </div>
@@ -322,7 +328,7 @@ padding: 0rem;
                             <span class="swal2-x-mark-line-right"></span>
                         </span>
                     </div>
-                    <div class="swal2-html-container mt-8" id="swal2-html-container" style="display: block;">Zákazník s týmto emailom už existuje!</div>
+                    <div class="swal2-html-container mt-8" id="swal2-html-container" style="display: block;">Zákazník so zadaným emailom už existuje! Zmeny neboli uložené!</div>
                     <button type="button" onclick="hidemodal()" class="btn btn-light btn-sm btn-light-primary mt-2">Chápem!</button>
                  </div>
              </div>

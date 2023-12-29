@@ -220,7 +220,7 @@
                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
                               <!--begin::Menu item-->
                               <div class="menu-item px-3">
-                                <a target="_blank" href="<?php echo url('/editcustomer/'.$c->id);?>" class="menu-link px-3">Aktualizovať</a>
+                                <a href="<?php echo url('/editcustomer/'.$c->id);?>" class="menu-link px-3">Aktualizovať</a>
                               </div>
                               <!--end::Menu item-->
                               <!--begin::Menu item-->

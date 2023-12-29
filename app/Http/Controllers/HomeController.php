@@ -262,6 +262,72 @@ class HomeController extends Controller
               }
             }
 
+public function editedcustomer(Request $request) {
+
+  if(!session()->has('admin')) {
+   return Redirect::to('/')->withErrors(['status' => 'Relácia skončila, boli ste odhlásený!']);
+  }
+  else {
+
+    $email = Requests::get('email');
+    $id = Requests::get('id');
+    $customer = Customer::where("id","=",$id)->first();
+
+    if($email != $customer->email && $this->check_customer_email($email)) {
+       return redirect()->back()->withInput()->with('showErrorModal', true);
+    }
+
+
+    $fname = Requests::get('fname');
+    $lname = Requests::get('lname');
+    $gender = Requests::get('gender');
+    $mobil = Requests::get('phone');
+    $goal = Requests::get('goal');
+    $city = Requests::get('city');
+    $age = Requests::get('age');
+    $height = Requests::get('height');
+    $weight = Requests::get('weight');
+
+    $boky = Requests::get('boky');
+    $pas = Requests::get('pas');
+    $stehno = Requests::get('stehno');
+    $alergies = Requests::get('alergies');
+    $activity = Requests::get('activity');
+
+    $inbody = Requests::get('inbody');
+    $lifestyle = Requests::get('lifestyle');
+    $payment = Requests::get('payment');
+    $note = Requests::get('note');
+
+
+    $customer->email = $email;
+    $customer->fname = $fname;
+    $customer->lname = $lname;
+    $customer->gender = $gender;
+    $customer->mobil = $mobil;
+
+    $customer->goal = $goal;
+    $customer->city = $city;
+    $customer->age = $age;
+    $customer->height = $height;
+    $customer->weight = $weight;
+    $customer->boky = $boky;
+    $customer->pas = $pas;
+    $customer->stehno = $stehno;
+    $customer->alergies = $alergies;
+
+    $customer->activity = $activity;
+    $customer->inbody = $inbody;
+    $customer->lifestyle = $lifestyle;
+    $customer->payment = $payment;
+    $customer->note = $note;
+
+    $customer->update();
+
+    return Redirect::to('/zakaznici');
+  }
+}
+
             public function addcustomer(Request $request) {
                           if(!session()->has('admin')) {
                            return Redirect::to('/')->withErrors(['status' => 'Relácia skončila, boli ste odhlásený!']);
