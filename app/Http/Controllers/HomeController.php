@@ -10,6 +10,7 @@ use Session;
 use Auth;
 use Requests;
 use DB;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Admin;
 use App\Models\PasswordResets;
@@ -21,10 +22,9 @@ class HomeController extends Controller
 
 
   public function chartdata() {
-
-  $data = DB::table('customer')->select(DB::raw('COUNT(customer.id) as mycount'))->groupBy('active')->orderByRaw("FIELD(active, 'Aktívny', 'Pozastavený', 'Čaká sa na platbu', 'Neaktívny')")->get();
-  header('Content-Type: application/json');
-  echo json_encode($data);
+    $data = DB::table('customer')->select(DB::raw('COUNT(customer.id) as mycount'))->groupBy('active')->orderByRaw("FIELD(active, 'Aktívny', 'Pozastavený', 'Čaká sa na platbu', 'Neaktívny')")->get();
+    header('Content-Type: application/json');
+    echo json_encode($data);
 }
 
   public function dashboard(Request $request) {
@@ -271,6 +271,26 @@ class HomeController extends Controller
 
                       return Redirect::to('/admins');
 
+              }
+            }
+
+
+            public function addmenu(Request $request) {
+              if(!session()->has('admin')) {
+               return Redirect::to('/')->withErrors(['status' => 'Relácia skončila, boli ste odhlásený!']);
+              }
+              else {
+                // Validate the uploaded file, adjust validation rules as needed
+                $request->validate([
+                    'file' => 'required|file|max:1024', // Max file size: 1 MB
+                ]);
+
+                // Store the uploaded file in the storage
+                $uploadedFile = $request->file('file');
+                $path = $uploadedFile->store('uploads'); // 'uploads' is a directory within the storage/app directory
+
+                // You can save the file path to the database or perform other operations
+                return Redirect::to('/menu');
               }
             }
 

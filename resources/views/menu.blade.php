@@ -99,7 +99,7 @@
 										<!--begin::Modal content-->
 										<div class="modal-content">
 											<!--begin::Form-->
-											<form class="form" action="none" id="kt_modal_upload_form">
+											<form class="form" method="post" action="<?php echo url('/addmenu'); ?>" id="kt_modal_upload_form">
 												<!--begin::Modal header-->
 												<div class="modal-header">
 													<!--begin::Modal title-->
@@ -128,7 +128,7 @@
 															<!--begin::Controls-->
 															<div class="dropzone-panel mb-4">
 																<a class="dropzone-select btn btn-sm btn-primary me-2">Vybrať súbor</a>
-																<a class="dropzone-upload btn btn-sm btn-light-primary me-2">Nahrať</a>
+																<button type="submit" class="dropzone-upload btn btn-sm btn-light-primary me-2">Nahrať</button>
 																<a class="dropzone-remove-all btn btn-sm btn-light-primary">Zmazať</a>
 															</div>
 															<!--end::Controls-->
@@ -177,6 +177,7 @@
 													<!--end::Input group-->
 												</div>
 												<!--end::Modal body-->
+												  <input type="hidden" name="_token" value="{{ csrf_token() }}">
 											</form>
 											<!--end::Form-->
 										</div>

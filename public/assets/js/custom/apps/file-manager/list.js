@@ -172,7 +172,7 @@ var KTFileManagerList = (function () {
                     var n = o.parentNode.innerHTML;
                     o.parentNode.removeChild(o);
                     var r = new Dropzone(e, {
-                        url: "path/to/your/server",
+                        url: "/addmenu",
                         parallelUploads: 1,
                         previewTemplate: n,
                         maxFilesize: 1,
@@ -180,6 +180,7 @@ var KTFileManagerList = (function () {
                         autoQueue: !1,
                         previewsContainer: e + " .dropzone-items",
                         clickable: e + " .dropzone-select",
+                        acceptedFiles: 'application/pdf',
                     });
                     r.on("error", function (file, errorMessage, xhr) {
                     if (xhr) {
