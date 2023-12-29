@@ -33,7 +33,7 @@ Route::get('/zakaznici', array('uses' => 'App\\Http\\Controllers\HomeController@
 Route::get('/admins', 'App\\Http\\Controllers\HomeController@user_index');
 
 Route::get('/menu', 'App\\Http\\Controllers\HomeController@showmenu');
-
+Route::get('/chartdata', array('uses' => 'App\\Http\\Controllers\HomeController@chartdata'));
 
 Route::get('/addsuper/','App\\Http\\Controllers\HomeController@showaddAdmin');
 Route::post('/addsuper/',[  'as' => 'updates',

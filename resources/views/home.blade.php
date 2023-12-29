@@ -74,7 +74,7 @@
                       <div class="d-flex flex-column justify-content-center flex-row-fluid pe-11 mb-5">
                           <!--begin::Label-->
                           <div class="d-flex fs-6 fw-semibold align-items-center mb-3">
-                              <div class="bullet bg-primary me-3"></div>
+                              <div class="bullet bg-success me-3"></div>
                               <div class="text-gray-500">Aktívny</div>
                               <div class="ms-auto fw-bold text-gray-700">{{$active}}</div>
                           </div>
@@ -82,15 +82,23 @@
 
                           <!--begin::Label-->
                           <div class="d-flex fs-6 fw-semibold align-items-center mb-3">
-                              <div class="bullet bg-success me-3"></div>
+                              <div class="bullet bg-primary me-3"></div>
                               <div class="text-gray-500">Čaká sa na úhradu</div>
                               <div class="ms-auto fw-bold text-gray-700">{{$waiting}}</div>
                           </div>
                           <!--end::Label-->
 
                           <!--begin::Label-->
+                          <div class="d-flex fs-6 fw-semibold align-items-center mb-3">
+                              <div class="bullet bg-warning me-3"></div>
+                              <div class="text-gray-500">Pozastavený</div>
+                              <div class="ms-auto fw-bold text-gray-700">{{$stopped}}</div>
+                          </div>
+                          <!--end::Label-->
+
+                          <!--begin::Label-->
                           <div class="d-flex fs-6 fw-semibold align-items-center">
-                              <div class="bullet bg-gray-300 me-3"></div>
+                              <div class="bullet bg-danger me-3"></div>
                               <div class="text-gray-500">Neaktívny</div>
                               <div class="ms-auto fw-bold text-gray-700">{{$inactive}}</div>
                           </div>

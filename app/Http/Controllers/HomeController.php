@@ -9,13 +9,23 @@ use Validator;
 use Session;
 use Auth;
 use Requests;
+use DB;
 
 use App\Models\Admin;
 use App\Models\PasswordResets;
 use App\Models\Customer;
 
+
 class HomeController extends Controller
 {
+
+
+  public function chartdata() {
+
+  $data = DB::table('customer')->select(DB::raw('COUNT(customer.id) as mycount'))->groupBy('active')->orderByRaw("FIELD(active, 'Aktívny', 'Pozastavený', 'Čaká sa na platbu', 'Neaktívny')")->get();
+  header('Content-Type: application/json');
+  echo json_encode($data);
+}
 
   public function dashboard(Request $request) {
 
@@ -27,12 +37,14 @@ class HomeController extends Controller
         $all = Customer::all()->count();
         $active = Customer::where("active","=","Aktívny")->count();
         $waiting = Customer::where("active","=","Čaká sa na úhradu")->count();
+        $stopped = Customer::where("active","=","Pozastavený")->count();
         $inactive = Customer::where("active","=","Neaktívny")->count();
         $data['all'] = $all;
 
         $data['active'] = $active;
         $data['waiting'] = $waiting;
         $data['inactive'] = $inactive;
+        $data['stopped'] = $stopped;
 
         $plus = intval($all) - 8;
         if($plus < 0) {
