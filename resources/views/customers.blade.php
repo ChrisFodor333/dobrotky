@@ -65,7 +65,7 @@
                           </svg>
                         </span>
                         <!--end::Svg Icon-->
-                        <input type="text" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Hľadať firmu" />
+                        <input type="text" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Hľadať zákazníka" />
                       </div>
                       <!--end::Search-->
                     </div>
@@ -88,13 +88,14 @@
                         </button>
                       </div>
                     -->
+
                       <!--end::Flatpickr-->
                       <div class="w-100 mw-200px">
                         <!--begin::Select2-->
                         <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Stav" data-kt-ecommerce-order-filter="status">
                           <option></option>
                           <option value="all">Všetky</option>
-                          <option value="Aktívny">Aktívny</option>
+                          <option value="Success">Aktívny</option>
                           <option value="Pozastavený">Pozastavený</option>
                           <option value="Neaktívny">Neaktívny</option>
                           <option value="Čaká na úhradu">Čaká na úhradu</option>
@@ -153,6 +154,7 @@
                                 <span class="badge badge-light-primary">Čaká na úhradu</span>
 														@endif
 														@if($c->active == "Aktívny")
+													    	<span class="badge badge-light-success" style="display: none !important;">Success</span>
                                 <span class="badge badge-light-success">Aktívny</span>
 														@endif
 														@if($c->active == "Pozastavený")
@@ -218,22 +220,16 @@
                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
                               <!--begin::Menu item-->
                               <div class="menu-item px-3">
-                                <a target="_blank" href="<?php echo url('/superuser/companydetails/'.$c->id);?>" class="menu-link px-3">Detaily</a>
+                                <a target="_blank" href="<?php echo url('/editcustomer/'.$c->id);?>" class="menu-link px-3">Aktualizovať</a>
                               </div>
                               <!--end::Menu item-->
                               <!--begin::Menu item-->
                               <div class="menu-item px-3">
-                                <a href="<?php echo url('/superuser/aktualizovatfirmu/'.$c->id);?>" class="menu-link px-3">Aktualizovať</a>
+                                <a href="<?php echo url('/priraditbalik/'.$c->id);?>" class="menu-link px-3">Priradiť balík</a>
                               </div>
                               <!--end::Menu item-->
                               <!--begin::Menu item-->
-                              <div class="menu-item px-3">
-                                @if($c->status == "aktívna")
-                                <a href="#" class="menu-link px-3" data-kt-ecommerce-order-filter="delete_row">Deaktivovať</a>
-                                @else
-                                <a href="#" class="menu-link px-3" data-kt-ecommerce-order-filter="activate">Aktivovať</a>
-                                @endif
-                              </div>
+
                               <!--end::Menu item-->
                             </div>
                             <!--end::Menu-->

@@ -50,3 +50,7 @@ Route::post('/customeradded', array('uses' => 'App\\Http\\Controllers\HomeContro
 Route::get('/edit/{id}','App\\Http\\Controllers\HomeController@edit');
 Route::post('/edited/',[  'as' => 'updates',
         'uses' =>'App\\Http\\Controllers\HomeController@edit_validator']);
+
+Route::get('/editcustomer/{id}','App\\Http\\Controllers\HomeController@editcustomer');
+Route::post('/editedcustomer/',[  'as' => 'updates',
+        'uses' =>'App\\Http\\Controllers\HomeController@editedcustomer']);

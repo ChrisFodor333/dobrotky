@@ -127,8 +127,13 @@ padding: 0rem;
                         <div class="mb-5">
                           <label class="d-flex align-items-center fs-5 fw-bold mb-2">Pohlavie</label>
                           <select  name="gender" aria-label="Výber pohlavia" data-placeholder="Výber pohlavia..." class="form-select form-select-solid fw-bold">
+                            @if(old('gender') == "Žena")
+                            <option value="Muž">Muž</option>
+                            <option selected value="Žena">Žena</option>
+                            @else
                             <option selected value="Muž">Muž</option>
                             <option value="Žena">Žena</option>
+                            @endif
                           </select>
                         </div>
                       </div>

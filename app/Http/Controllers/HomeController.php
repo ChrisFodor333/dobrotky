@@ -358,6 +358,17 @@ class HomeController extends Controller
         }
       }
 
+
+      public function editcustomer($id) {
+        if(session()->has('admin')) {
+            $user = Customer::select('*')->where("id", "=", $id)->get()->first();
+            $data['customer'] = $user;
+            return view('editcustomer', $data);
+            } else {
+                return Redirect::to('/');
+            }
+          }
+
       public function showaddAdmin() {
                 if(session()->has('admin')) {
                   return view('newadmin');

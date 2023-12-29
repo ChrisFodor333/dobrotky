@@ -133,7 +133,10 @@ var KTAppEcommerceSalesListing = (function () {
                     const e = document.querySelector('[data-kt-ecommerce-order-filter="status"]');
                     $(e).on("change", (e) => {
                         let n = e.target.value;
-                        "all" === n && (n = ""), t.column(1).search(n).draw();
+                        if (n === 'all') {
+                              n = '';
+                          }
+                        t.column(1).search(n).draw();
                     });
                 })(),
                 c(),
