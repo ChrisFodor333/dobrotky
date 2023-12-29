@@ -54,7 +54,7 @@ class HomeController extends Controller
      return Redirect::to('/')->withErrors(['status' => 'Relácia skončila, boli ste odhlásený!']);
      }
       else {
-            $customer = Customer::all();
+            $customer = Customer::orderByRaw("FIELD(active, 'Aktívny', 'Pozastavený', 'Čaká sa na platbu', 'Neaktívny')")->get();
             $count = Customer::all()->count();
             $data["customers"] = $customer;
             $data["count"] = $count;
