@@ -86,7 +86,7 @@ padding: 0rem;
 									<!--begin::Card body-->
                   <div class="card-body pt-0 pb-5">
                       <!--begin::Table-->
-                      <form class="form" id="myForm" method="post" novalidate="novalidate" action="<?php echo url('/customeradded'); ?>">
+                      <form class="form" id="myForm" method="post" novalidate="novalidate" action="<?php echo url('/programadded'); ?>">
                   <!--end::Top-->
                   <!--begin::Separator-->
                   <div class="separator separator-dashed my-10 myseparator"></div>
@@ -99,7 +99,7 @@ padding: 0rem;
                       <div class="col-lg-6">
                         <div class="mb-5">
                           <label class="d-flex align-items-center fs-5 fw-bold mb-2">Program</label>
-                          <select  name="program" aria-label="Výber programu" data-placeholder="Výber programu..." class="form-select form-select-solid fw-bold">
+                          <select name="program" aria-label="Výber programu" data-placeholder="Výber programu..." class="form-select form-select-solid fw-bold">
                             <option value="4 týždňový redukčný program">4 týždňový redukčný program</option>
                             <option value="4 týždňový program - zdravý životný štýl">4 týždňový program - zdravý životný štýl</option>
                             <option value="2 týždňový redukčný program">2 týždňový redukčný program</option>
@@ -114,53 +114,111 @@ padding: 0rem;
                           <label class="d-flex align-items-center fs-5 fw-bold mb-2">Expirácia
                             <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="Vypĺňať iba v prípade ak je to potrebné. V opačnom prípade expirácia sa nastaví automaticky od dnešného dňa." aria-label="Vypĺňať iba v prípade ak je to potrebné. V opačnom prípade expirácia sa nastaví automaticky od dnešného dňa."></i>
                           </label>
-                          <input type="date" required class="form-control form-control-solid" placeholder="" name="expiration" value="" />
+                          <input type="date" min="<?php echo date('Y-m-d'); ?>" class="form-control form-control-solid" placeholder="" name="expiration"  />
                         </div>
                       </div>
                     </div>
 
                       </div>
-                    <div class="mb-0 ">
+                    <div class="mb-0">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                      <input type="hidden" name="id" value="{{ $customer->id }}">
                           <button type="submit" id="stepper2" class="btn btn-lg btn-primary" style="float:right !important;">Odoslať</button>
                       <br> <br> <br>
                     </div>
                       <!--end::Table-->
                     </form>
 
-
-
-            @if(session('showErrorModal'))
-              <div class="savemodal" style="display: flex !important;" id="errorModal">
-                 <div class="savemodal-content">
-                   <div class="swal2-icon swal2-error swal2-icon-show" style="display: flex;">
-                        <span class="swal2-x-mark">
-                            <span class="swal2-x-mark-line-left"></span>
-                            <span class="swal2-x-mark-line-right"></span>
-                        </span>
-                    </div>
-                    <div class="swal2-html-container mt-8" id="swal2-html-container" style="display: block;">Zákazník s týmto emailom už existuje!</div>
-                    <button type="button" onclick="hidemodal()" class="btn btn-light btn-sm btn-light-primary mt-2">Chápem!</button>
-                 </div>
-             </div>
-             @endif
-             <div class="savemodal" id="successModal">
-											 <div class="savemodal-content">
-												 <div class="swal2-icon swal2-success swal2-icon-show" style="display: flex;"><div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
-													 <span class="swal2-success-line-tip"></span> <span class="swal2-success-line-long"></span>
-													 <div class="swal2-success-ring"></div> <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
-													 <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
-												 </div>
-													<div class="swal2-html-container mt-8" id="swal2-html-container" style="display: block;">Zákazník sa vytvára</div>
-											 </div>
-									 </div>
                   </div>
+
+
 									<!--end::Card body-->
 								</div>
+
+                <div class="card mt-10">
+                  <div class="card-body pt-0 pb-5">
+                    <div class="card-header pt-7" id="kt_chat_contacts_header">
+                      <!--begin::Card title-->
+                      <div class="card-title">
+                        <!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
+                        <span class="svg-icon svg-icon-1 me-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M20 14H18V10H20C20.6 10 21 10.4 21 11V13C21 13.6 20.6 14 20 14ZM21 19V17C21 16.4 20.6 16 20 16H18V20H20C20.6 20 21 19.6 21 19ZM21 7V5C21 4.4 20.6 4 20 4H18V8H20C20.6 8 21 7.6 21 7Z" fill="black" />
+                            <path opacity="0.3" d="M17 22H3C2.4 22 2 21.6 2 21V3C2 2.4 2.4 2 3 2H17C17.6 2 18 2.4 18 3V21C18 21.6 17.6 22 17 22ZM10 7C8.9 7 8 7.9 8 9C8 10.1 8.9 11 10 11C11.1 11 12 10.1 12 9C12 7.9 11.1 7 10 7ZM13.3 16C14 16 14.5 15.3 14.3 14.7C13.7 13.2 12 12 10.1 12C8.10001 12 6.49999 13.1 5.89999 14.7C5.59999 15.3 6.19999 16 7.39999 16H13.3Z" fill="black" />
+                          </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                        <h2>História programov zákazníka</h2>
+                      </div>
+                      <!--end::Card title-->
+                    </div>
+                    <div class="card-body pt-0 pb-5">
+                      <table class="table align-middle table-row-dashed gy-5"
+                                                  id="kt_table_customers_payment">
+                                                  <!--begin::Table head-->
+                                                  <thead class="border-bottom border-gray-200 fs-7 mytablecss">
+                                                      <!--begin::Table row-->
+                                                      <tr class="text-center text-muted text-uppercase gs-0">
+                                                          <th class="min-w-100px text-start">Program</th>
+                                                          <th class="min-w-100px text-end">Expirácia</th>
+                                                      </tr>
+                                                      <!--end::Table row-->
+                                                  </thead>
+                                                  <!--end::Table head-->
+                                                  <!--begin::Table body-->
+                                                  <tbody class="fs-6 fw-bold text-gray-600">
+                                                      @foreach($program as $p)
+                                                      <tr>
+                                                          <td class="text-start pe-0">
+                                                              <span class="mytablecss">{{$p->program}}</span>
+                                                          </td>
+                                                          <!--end::Total=-->
+                                                          <!--begin::Date Modified=-->
+                                                          <td class="text-end">
+                                                              <span class="mytablecss">{{ date("d/m/Y", strtotime($p->expiration));  }}</span>
+                                                          </td>
+                                                      </tr>
+                                                      @endforeach
+                                                  </tbody>
+                                              </table>
+                    </div>
+                  </div>
+                  </div>
+
 								<!--end::Card-->
 							</div>
 							<!--end::Container-->
 						</div>
+
+
+
+
+
+                @if(session('showErrorModal'))
+                  <div class="savemodal" style="display: flex !important;" id="errorModal">
+                     <div class="savemodal-content">
+                       <div class="swal2-icon swal2-error swal2-icon-show" style="display: flex;">
+                            <span class="swal2-x-mark">
+                                <span class="swal2-x-mark-line-left"></span>
+                                <span class="swal2-x-mark-line-right"></span>
+                            </span>
+                        </div>
+                        <div class="swal2-html-container mt-8" id="swal2-html-container" style="display: block;">Zákazník s týmto emailom už existuje!</div>
+                        <button type="button" onclick="hidemodal()" class="btn btn-light btn-sm btn-light-primary mt-2">Chápem!</button>
+                     </div>
+                 </div>
+                 @endif
+                <div class="savemodal" id="successModal">
+   											 <div class="savemodal-content">
+   												 <div class="swal2-icon swal2-success swal2-icon-show" style="display: flex;"><div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
+   													 <span class="swal2-success-line-tip"></span> <span class="swal2-success-line-long"></span>
+   													 <div class="swal2-success-ring"></div> <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+   													 <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
+   												 </div>
+   													<div class="swal2-html-container mt-8" id="swal2-html-container" style="display: block;">Zákazníkovi sa priraďuje balík!</div>
+   											 </div>
+   									 </div>
+
 						<!--end::Post-->
 					</div>
 
@@ -206,4 +264,24 @@ document.getElementById("myForm").addEventListener("submit", function (e) {
     }, 1500); // 3 seconds
 });
 
+</script>
+
+<script type="text/javascript">
+
+var table = $("#kt_table_customers_payment").DataTable({
+  "language": {
+  		"lengthMenu": "Show _MENU_",
+      search: "Hľadať:",
+      info:"_END_ z _TOTAL_ záznamov",
+      lengthMenu:     "Ukázať záznamov: _MENU_",
+      infoEmpty:      "0 z 0 záznamov",
+      infoFiltered:   "(filtrované z _MAX_ záznamov)",
+      zeroRecords:    "Žiadne záznamy",
+      paginate: {
+          next:       "Ďalšie",
+          previous:   "Prechádzajúce",
+      }
+  	},
+    "info": false,
+  });
 </script>

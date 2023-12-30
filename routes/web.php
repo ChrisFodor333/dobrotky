@@ -52,6 +52,8 @@ Route::post('/addmenu', array('uses' => 'App\\Http\\Controllers\HomeController@a
 Route::get('/edit/{id}','App\\Http\\Controllers\HomeController@edit');
 
 Route::get('/programy/{id}','App\\Http\\Controllers\HomeController@programy');
+Route::post('/programadded/',[  'as' => 'updates',
+        'uses' =>'App\\Http\\Controllers\HomeController@addprogram']);
 
 Route::post('/edited/',[  'as' => 'updates',
         'uses' =>'App\\Http\\Controllers\HomeController@edit_validator']);

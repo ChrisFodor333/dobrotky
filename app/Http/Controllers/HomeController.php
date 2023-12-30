@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Admin;
 use App\Models\PasswordResets;
 use App\Models\Customer;
+use App\Models\Program;
 
 
 class HomeController extends Controller
@@ -22,8 +23,17 @@ class HomeController extends Controller
 
 
   public function chartdata() {
-    $data = DB::table('customer')->select(DB::raw('COUNT(customer.id) as mycount'))->groupBy('active')->orderByRaw("FIELD(active, 'Aktívny', 'Pozastavený', 'Čaká sa na platbu', 'Neaktívny')")->get();
-    header('Content-Type: application/json');
+    $data = DB::table('customer')
+        ->select('statuses.status', DB::raw('COALESCE(COUNT(customer.id), 0) as mycount'))
+        ->rightJoin(
+            DB::raw("(SELECT 'Aktívny' as status UNION SELECT 'Pozastavený' UNION SELECT 'Čaká sa na platbu' UNION SELECT 'Neaktívny') as statuses"),
+            'customer.active',
+            '=',
+            'statuses.status'
+        )
+        ->groupBy('statuses.status')
+        ->orderByRaw("FIELD(statuses.status, 'Aktívny', 'Pozastavený', 'Čaká sa na platbu', 'Neaktívny')")
+        ->get();
     echo json_encode($data);
 }
 
@@ -67,8 +77,18 @@ class HomeController extends Controller
      }
       else {
             $customer = Customer::orderByRaw("FIELD(active, 'Aktívny', 'Pozastavený', 'Čaká sa na platbu', 'Neaktívny')")->get();
+            $program = [];
+            foreach($customer as $c) {
+              $prog = Program::select('expiration')->where("fk_customer","=",$c->id)->orderBy("id","desc")->limit(1)->first();
+              if($prog) {
+                array_push($program, $prog->expiration);
+              } else {
+                array_push($program, "");
+              }
+            }
             $count = Customer::all()->count();
             $data["customers"] = $customer;
+            $data["program"] = $program;
             $data["count"] = $count;
             return view('customers', $data);
           }
@@ -361,7 +381,51 @@ public function editedcustomer(Request $request) {
   }
 }
 
-            public function addcustomer(Request $request) {
+
+      public function addprogram(Request $request) {
+                    if(!session()->has('admin')) {
+                     return Redirect::to('/')->withErrors(['status' => 'Relácia skončila, boli ste odhlásený!']);
+                  }
+                  else {
+                          $program = Requests::get('program');
+                          $expiration = Requests::get('expiration');
+                          $id = Requests::get('id');
+                          $customer = Customer::where("id","=",$id)->first();
+
+
+
+                          $newp = new Program;
+                          $newp->program = $program;
+                          $newp->fk_customer = $id;
+
+
+
+                          if($expiration == null || $expiration == "" || $expiration == "null") {
+                            if(substr($program,0,1) == "4") {
+                              $currentDate = date('Y-m-d');
+                              $newDate = date('Y-m-d', strtotime($currentDate . ' + 4 weeks'));
+                              $expiration = $newDate;
+                            }
+                            if(substr($program,0,1) == "2") {
+                              $currentDate = date('Y-m-d');
+                              $newDate = date('Y-m-d', strtotime($currentDate . ' + 2 weeks'));
+                              $expiration = $newDate;
+                            }
+                          }
+
+                          $newp->expiration = $expiration;
+                          $newp->save();
+                          $customer->active = "Aktívny";
+                          $customer->update();
+
+                          return Redirect::to('/programy/'.$id);
+
+                  }
+                }
+
+
+
+      public function addcustomer(Request $request) {
                           if(!session()->has('admin')) {
                            return Redirect::to('/')->withErrors(['status' => 'Relácia skončila, boli ste odhlásený!']);
                         }
@@ -460,7 +524,9 @@ public function editedcustomer(Request $request) {
       public function programy($id) {
         if(session()->has('admin')) {
             $customer = Customer::select('*')->where("id", "=", $id)->get()->first();
+            $program = Program::select('*')->where("fk_customer","=", $customer->id)->get();
             $data['customer'] = $customer;
+            $data['program'] = $program;
             return view('packages', $data);
             } else {
                 return Redirect::to('/');

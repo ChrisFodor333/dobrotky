@@ -199,7 +199,7 @@
 													</td>
 
 													<td class="text-end pe-0">
-																<span class="mytablecss">2024/01/09</span>
+																<span class="mytablecss">{{$program[$i]}}</span>
 													</td>
 
 													<td class="text-end pe-0">
