@@ -457,6 +457,15 @@ public function editedcustomer(Request $request) {
         }
       }
 
+      public function programy($id) {
+        if(session()->has('admin')) {
+            $customer = Customer::select('*')->where("id", "=", $id)->get()->first();
+            $data['customer'] = $customer;
+            return view('packages', $data);
+            } else {
+                return Redirect::to('/');
+            }
+          }
 
       public function editcustomer($id) {
         if(session()->has('admin')) {

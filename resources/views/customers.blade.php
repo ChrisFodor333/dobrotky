@@ -225,7 +225,7 @@
                               <!--end::Menu item-->
                               <!--begin::Menu item-->
                               <div class="menu-item px-3">
-                                <a href="<?php echo url('/priraditbalik/'.$c->id);?>" class="menu-link px-3">Priradiť balík</a>
+                                <a href="<?php echo url('/programy/'.$c->id);?>" class="menu-link px-3">Programy</a>
                               </div>
                               <!--end::Menu item-->
                               <!--begin::Menu item-->
