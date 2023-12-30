@@ -20,7 +20,11 @@ Route::get('/logout', array('uses' => 'App\\Http\\Controllers\HomeController@log
 Route::post('reset_password_without_token', 'App\\Http\\Controllers\HomeController@validatePasswordRequest');
 
 Route::get('/password/reset/{key}/{email}', array('uses' => 'App\\Http\\Controllers\HomeController@index_reset'));
+
+Route::get('/password/new/{key}/{email}', array('uses' => 'App\\Http\\Controllers\HomeController@newpass'));
+
 Route::post('reset_password_with_token', 'App\\Http\\Controllers\HomeController@resetPassword');
+Route::post('reset_password_with_token_customer', 'App\\Http\\Controllers\HomeController@resetPasswordCustomer');
 
 Route::get('/forgottenpassword', function () {
     return view('forgotten_password');

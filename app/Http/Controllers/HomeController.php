@@ -11,11 +11,16 @@ use Auth;
 use Requests;
 use DB;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 use App\Models\Admin;
 use App\Models\PasswordResets;
 use App\Models\Customer;
 use App\Models\Program;
+use App\Models\Newpass;
+
+use App\Mail\PasswordReset;
+use App\Mail\NewPassMail;
 
 
 class HomeController extends Controller
@@ -202,6 +207,59 @@ class HomeController extends Controller
 
 
 
+
+      public function resetPasswordCustomer(Request $request)
+          {
+            if($request->submit == "submit")
+            {
+              $validator = Validator::make(Requests::all(), [
+                  'password' => 'required|alphaNum|min:8|confirmed']);
+
+                  if(strlen($request->input('password')) < 8) {
+                    return redirect()->back()
+                        ->withErrors(['password' => 'Heslo musí obsahovať aspoň 8 znakov'])
+                        ->withInput(Requests::except('password')); // send back the input (not the password) so that we can repopulate the form
+                  }
+
+                  if($request->input('password') != $request->input('password_confirmation')) {
+                    return redirect()->back()
+                        ->withErrors(['password' => 'Heslá nezhodujú'])
+                        ->withInput(Requests::except('password')); // send back the input (not the password) so that we can repopulate the form
+                  }
+
+                  if ($validator->fails()) {
+                      return redirect()->back()
+                          ->withErrors($validator) // send back all errors to the login form
+                          ->withInput(Requests::except('password')); // send back the input (not the password) so that we can repopulate the form
+                  }
+
+              $password = $request->input('password');
+          // Validate the token
+              $tokenData = Newpass::where('token', $request->input('token'))->first();
+          // Redirect the user back to the password reset request form if the token is invalid
+              if (!$tokenData) return view('newpass');
+
+              $user = Customer::where('email', $tokenData->email)->first();
+          // Redirect the user back if the email is invalid
+              if (!$user) return redirect()->back()->withErrors(['email' => 'Email nenájdený']);
+          //Hash and update the new password
+              $user->password = \Hash::make($password);
+              $user->update(); //or $user->save();
+
+
+              return Redirect::to('/vitajte')->withErrors(['email' => 'Nové heslo bolo úspešne nastavené!']);
+
+              //Delete the token
+              Newpass::where('email', $user->email)->delete();
+
+            } else {
+              return redirect()->back();
+            }
+          }
+
+
+
+
   public function validatePasswordRequest(Request $request) {
       //You can add validation login here
       //$user = User::where('email', '=', $request->input('email'))->first();
@@ -244,6 +302,36 @@ class HomeController extends Controller
             }
         }
 
+
+        private function sendResetEmailCustomer($email, $token) {
+              //Retrieve the user from the database
+              $user = Customer::where('email', $email)->select('fname', 'email')->first();
+              //Generate, the password reset link. The token generated is embedded in the link
+              $link = "https://app.leadix.sk/" . 'password/reset/' . $token . '/' . urlencode($user->email);
+
+                  try {
+                    //poslať email
+                    Mail::to($email)->send(new NewPassMail($link));
+                      return true;
+                      //return redirect()->back()->with('status', trans('Ak zadaná emailova adresa existuje v databáze, link na resetovanie hesla bude poslaný v emailovej správe.'));
+                  } catch (\Exception $e) {
+                      return false;
+                      //return redirect()->back()->with('status', trans('Ak zadaná emailova adresa existuje v databáze, link na resetovanie hesla bude poslaný v emailovej správe.'));
+                  }
+              }
+
+
+    public function index_reset($key, $email) {
+                      $data['key'] = $key;
+                      $data['email'] = $email;
+                      return view('reset', $data);
+              }
+
+  public function newpass($key, $email) {
+                    $data['key'] = $key;
+                    $data['email'] = $email;
+                    return view('newpass', $data);
+            }
 
   public function user_index() {
                 if(session()->has('admin')) {
@@ -486,6 +574,17 @@ public function editedcustomer(Request $request) {
 
                                 $customer->active = "Neaktívny";
                                 $customer->save();
+
+
+                                Newpass::insert([
+                                    'email' => $email,
+                                    'token' => str_random(60),
+                                    'created_at' => Carbon::now()
+                                ]);
+                                //Get the token just created above
+                                $tokenData = Newpass::where('email', $email)->latest()->first();
+
+                                if ($this->sendResetEmailCustomer($email, $tokenData->token)) {}
 
                                 return Redirect::to('/zakaznici');
 
