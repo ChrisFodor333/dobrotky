@@ -296,7 +296,7 @@
 
 										<tr>
 											<td align="center" valign="middle" style="font-family:'Poppins', sans-serif;color:#939393;font-size:14px;line-height:24px;font-weight:400;letter-spacing:0px;padding:0;padding-bottom:30px;">
-												Práva bola vytvorená registrácia pre našu aplikáciu.<br>
+												Práva bola vytvorená Vaša registrácia pre našu aplikáciu.<br>
 										   	Pred vstupom do aplikácie je potrebné vytvoriť Vaše prvé heslo <a href="{{$link}}">TU</a>.<br>
 											</td>
 										</tr>
