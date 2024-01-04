@@ -30,7 +30,7 @@ class NewPass extends Mailable
      */
     public function build()
     {
-      return $this->from('info@leadix.sk', 'Leadix')
+      return $this->from('chrisfodor333@gmail.com', 'chrisfodor333@gmail.com')
               ->subject('Požiadavka na resetovanie hesla')
               ->view('emails.newpassword');
     }

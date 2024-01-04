@@ -1,7 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
+Route::get('storage/{filename}', function ($filename) {
+    $path = storage_path('app/public/' . $filename);
+
+    if (!Storage::disk('public')->exists($filename)) {
+        abort(404);
+    }
+
+    return response()->file($path);
+})->where('filename', '.*');
 /*
 |--------------------------------------------------------------------------
 | Web Routes
