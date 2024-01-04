@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class NewPass extends Mailable
+class NewPassMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -31,7 +31,7 @@ class NewPass extends Mailable
     public function build()
     {
       return $this->from('chrisfodor333@gmail.com', 'chrisfodor333@gmail.com')
-              ->subject('Požiadavka na resetovanie hesla')
+              ->subject('Vítajte')
               ->view('emails.newpassword');
     }
 }

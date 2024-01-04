@@ -196,7 +196,7 @@ class HomeController extends Controller
           $user->update(); //or $user->save();
 
 
-          return Redirect::to('/admin')->withErrors(['email' => 'Nové heslo bolo úspešne nastavené!']);
+          return Redirect::to('/')->withErrors(['email' => 'Nové heslo bolo úspešne nastavené!']);
 
           //Delete the token
           PasswordResets::where('email', $user->email)->delete();

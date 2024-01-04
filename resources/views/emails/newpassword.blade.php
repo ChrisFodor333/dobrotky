@@ -290,15 +290,14 @@
 
 										<tr>
 											<td align="center" valign="middle" style="font-family:'Poppins', sans-serif;color:#191919;font-size:28px;line-height:38px;font-weight:700;letter-spacing:0px;padding:0;padding-bottom:10px;">
-												Požiadavka na<br> resetovanie hesla
+												Ďakujeme, že využívate<br> naše služby
 											</td>
 										</tr>
 
 										<tr>
 											<td align="center" valign="middle" style="font-family:'Poppins', sans-serif;color:#939393;font-size:14px;line-height:24px;font-weight:400;letter-spacing:0px;padding:0;padding-bottom:30px;">
-												Práve sme dostali požiadavku na resetovanie hesla pre profil, ktorý je asociovaný s touto emailovou adresou.<br>
-										   	Resetovať heslo je možné <a href="{{$link}}">TU</a>.<br>
-											  Ak ste nepožiadali o resetovanie hesla, môžete tento email ignorovať.<br>
+												Práva bola vytvorená registrácia pre našu aplikáciu.<br>
+										   	Pred vstupom do aplikácie je potrebné vytvoriť Vaše prvé heslo <a href="{{$link}}">TU</a>.<br>
 											</td>
 										</tr>
 
