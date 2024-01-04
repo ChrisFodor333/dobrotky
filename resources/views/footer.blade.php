@@ -7,10 +7,10 @@
             <!--begin::Menu-->
             <ul class="menu menu-gray-600 fw-bold order-1">
               <li class="menu-item">
-                <span class="menu-link px-2">2023©</span>
+                <span class="menu-link px-2">2024©</span>
               </li>
               <li class="menu-item">
-                <a href="https://leadix.sk/" target="_blank" class="menu-link text-hover-primary px-2">Leadix s.r.o.</a>
+                <a href="https://leadix.sk/" target="_blank" class="menu-link text-hover-primary px-2">Dobroty od dobrotky</a>
               </li>
             </ul>
             <!--end::Menu-->

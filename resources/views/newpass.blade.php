@@ -38,7 +38,7 @@
 				<div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
 					<!--begin::Logo-->
 
-						<img alt="Logo" src="<?php echo url('/');?>/assets/media/logos/logo-1.svg" class="h-40px" />
+						<img alt="Logo" src="<?php echo url('/');?>/assets/media/logos/logo-1-dark.png" class="h-125px" />
 <br> <br>
 					<!--end::Logo-->
 					<!--begin::Wrapper-->

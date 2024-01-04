@@ -161,6 +161,7 @@ padding: 0rem;
                                                       <tr class="text-center text-muted text-uppercase gs-0">
                                                           <th class="min-w-100px text-start">Program</th>
                                                           <th class="min-w-100px text-end">Expirácia</th>
+                                                          <th class="min-w-100px text-end">Upraviť</th>
                                                       </tr>
                                                       <!--end::Table row-->
                                                   </thead>
@@ -176,6 +177,9 @@ padding: 0rem;
                                                           <!--begin::Date Modified=-->
                                                           <td class="text-end">
                                                               <span class="mytablecss">{{ date("d/m/Y", strtotime($p->expiration));  }}</span>
+                                                          </td>
+                                                          <td class="text-end">
+                                                              <a href="<?php echo url('/upravitpgoram/'.$p->id);?>" class="btn btn-light btn-sm btn-active-light-primary mytablecss">Upraviť</a>
                                                           </td>
                                                       </tr>
                                                       @endforeach

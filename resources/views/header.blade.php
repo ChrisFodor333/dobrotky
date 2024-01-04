@@ -142,6 +142,20 @@
 								<a href="<?php echo url('/zakaznici');?>" class="menu-link px-5">Zákazníci</a>
 							</div>
 
+							<div class="separator my-2"></div>
+
+							<!--begin::Menu item-->
+							<div class="menu-item px-5">
+								<a href="<?php echo url('/menu');?>" class="menu-link px-5">Nahrať menu</a>
+							</div>
+
+							<div class="separator my-2"></div>
+
+							<!--begin::Menu item-->
+							<div class="menu-item px-5">
+								<a href="<?php echo url('/admins');?>" class="menu-link px-5">Správcovia</a>
+							</div>
+
 
               <div class="separator my-2"></div>
 
@@ -149,8 +163,7 @@
               <div class="menu-item px-5">
                 <a href="<?php echo url('/logout');?>" class="menu-link px-5">Odhlásiť sa</a>
               </div>
-              <!--end::Menu item-->
-              <!--begin::Menu separator-->
+
               <div class="separator my-2"></div>
 
             </div>

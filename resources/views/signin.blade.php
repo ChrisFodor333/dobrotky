@@ -34,7 +34,7 @@
 				<div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
 					<!--begin::Logo-->
 					<a href="<?php echo url('/admin'); ?>" class="mb-12">
-						<img alt="Logo" src="assets/media/logos/logo-1.svg" class="h-40px" />
+						<img alt="Logo" src="assets/media/logos/logo-1-dark.png" class="h-125px" />
 					</a>
 					<!--end::Logo-->
 					<!--begin::Wrapper-->

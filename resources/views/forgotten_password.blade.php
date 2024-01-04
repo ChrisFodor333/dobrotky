@@ -38,7 +38,7 @@
 				<div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
 					<!--begin::Logo-->
 
-						<img alt="Logo" src="<?php echo url('/');?>/assets/media/logos/logo-1.svg" class="h-40px" />
+						<img alt="Logo" src="<?php echo url('/');?>/assets/media/logos/logo-1-dark.png" class="h-125px" />
 <br> <br>
 					<!--end::Logo-->
 					<!--begin::Wrapper-->
@@ -65,7 +65,7 @@
 							<div class="d-flex flex-wrap justify-content-center pb-lg-0">
 								<input type="submit" value="Potvrdiť" class="btn btn-lg btn-primary fw-bolder me-4">
 								</input>
-								<a href="<?php echo url('/admin');?>" class="btn btn-lg btn-light-primary fw-bolder">Naspäť</a>
+								<a href="<?php echo url('/');?>" class="btn btn-lg btn-light-primary fw-bolder">Naspäť</a>
 							</div>
 							<!--end::Actions-->
               <div class="text-center">

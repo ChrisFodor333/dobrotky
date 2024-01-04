@@ -29541,36 +29541,36 @@ a:hover {
 .menu-hover-bg .menu-item.hover:not(.here) > .menu-link:not(.disabled):not(.active):not(.here),
 .menu-hover-bg .menu-item:not(.here) .menu-link:hover:not(.disabled):not(.active):not(.here) {
     transition: color 0.2s ease, background-color 0.2s ease;
-    background-color: rgba(245, 248, 250, 0.8);
+
 }
 .menu-here-bg .menu-item.here > .menu-link {
     transition: color 0.2s ease, background-color 0.2s ease;
-    background-color: rgba(245, 248, 250, 0.8);
+
 }
 .menu-show-bg .menu-item.show > .menu-link {
     transition: color 0.2s ease, background-color 0.2s ease;
-    background-color: rgba(245, 248, 250, 0.8);
+
 }
 .menu-active-bg .menu-item .menu-link.active {
     transition: color 0.2s ease, background-color 0.2s ease;
-    background-color: rgba(245, 248, 250, 0.8);
+
 }
 .menu-state-bg .menu-item.hover:not(.here) > .menu-link:not(.disabled):not(.active):not(.here),
 .menu-state-bg .menu-item:not(.here) .menu-link:hover:not(.disabled):not(.active):not(.here) {
     transition: color 0.2s ease, background-color 0.2s ease;
-    background-color: rgba(245, 248, 250, 0.8);
+    /**/
 }
 .menu-state-bg .menu-item.here > .menu-link {
     transition: color 0.2s ease, background-color 0.2s ease;
-    background-color: rgba(245, 248, 250, 0.8);
+
 }
 .menu-state-bg .menu-item.show > .menu-link {
     transition: color 0.2s ease, background-color 0.2s ease;
-    background-color: rgba(245, 248, 250, 0.8);
+
 }
 .menu-state-bg .menu-item .menu-link.active {
     transition: color 0.2s ease, background-color 0.2s ease;
-    background-color: rgba(245, 248, 250, 0.8);
+
 }
 .menu-hover-primary .menu-item.hover:not(.here) > .menu-link:not(.disabled):not(.active):not(.here),
 .menu-hover-primary .menu-item:not(.here) .menu-link:hover:not(.disabled):not(.active):not(.here) {
@@ -44792,7 +44792,7 @@ body {
 }
 .aside.aside-dark .aside-toggle svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #494b74;
+    fill: #da1c4b;
 }
 .aside.aside-dark .aside-toggle svg:hover [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
