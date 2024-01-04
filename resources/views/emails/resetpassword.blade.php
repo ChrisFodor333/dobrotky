@@ -17,7 +17,7 @@
 <meta name="format-detection" content="date=no"> <!-- disable auto date linking in iOS -->
 <meta name="format-detection" content="address=no"> <!-- disable auto address linking in iOS -->
 <meta name="format-detection" content="email=no"> <!-- disable auto email linking in iOS -->
-<title>leadix.sk</title>
+<title>Dobroty od dobrotky</title>
 
 <!-- CSS -->
 <style type="text/css">
@@ -198,8 +198,8 @@
 
 										<tr>
 											<td align="center" valign="middle">
-												<a href="https://www.leadix.sk/" style="text-decoration:none;border:0">
-													<img src="https://app.leadix.sk/assets/media/logos/mail.png" width="140" border="0" alt="logo" style="width:140px;border:0px;display:inline!important;" >
+												<a href="https://dobroty.physcatch.sk/" style="text-decoration:none;border:0">
+													<img src="https://dobroty.physcatch.sk/assets/media/logos/mail.png" width="140" border="0" alt="logo" style="width:140px;border:0px;display:inline!important;" >
 											</a>
 											</td>
 										</tr>
@@ -349,8 +349,8 @@
 											<td align="center" valign="middle">
 												<table border="0" align="center" cellpadding="0" cellspacing="0">
 													<tr>
-														<td align="center" style="background-color:#5a49f8;display:block;mso-padding-alt:14px 40px 14px 40px;border-radius:6px; border: 0px solid #5a49f8;">
-															<a href="https://app.leadix.sk/admin" style="color:#FFF;font-family:'Poppins', sans-serif;font-size:14px;font-weight:600;letter-spacing:0px;line-height:24px;display:block;padding:14px 40px 14px 40px;text-decoration:none;white-space:nowrap;">
+														<td align="center" style="background-color:#fb2156;display:block;mso-padding-alt:14px 40px 14px 40px;border-radius:6px; border: 0px solid #fb2156;">
+															<a href="https://dobroty.physcatch.sk/" style="color:#FFF;font-family:'Poppins', sans-serif;font-size:14px;font-weight:600;letter-spacing:0px;line-height:24px;display:block;padding:14px 40px 14px 40px;text-decoration:none;white-space:nowrap;">
 																Prihlásiť sa
 															</a>
 														</td>
@@ -453,8 +453,8 @@
 										<tr>
 											<td align="center" valign="middle" class="center-text" style="font-family:'Poppins', sans-serif;color:#939393;font-size:14px;line-height:24px;font-weight:400;letter-spacing:0px;padding:0;padding-bottom:30px;">
 
-												<a href="https://www.leadix.sk/" style="text-decoration:underline!important;border:0;color:#939393;">
-													Leadix.sk
+												<a href="https://dobroty.physcatch.sk/" style="text-decoration:underline!important;border:0;color:#939393;">
+													Dobroty od dobrotky
 												</a>
 												</a>
 											</td>
