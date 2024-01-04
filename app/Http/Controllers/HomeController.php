@@ -289,7 +289,7 @@ class HomeController extends Controller
         //Retrieve the user from the database
         $user = Admin::where('email', $email)->select('fname', 'email')->first();
         //Generate, the password reset link. The token generated is embedded in the link
-        $link = "https://app.leadix.sk/" . 'password/reset/' . $token . '/' . urlencode($user->email);
+        $link = "https://dobroty.physcatch.sk/" . 'password/reset/' . $token . '/' . urlencode($user->email);
 
             try {
               //poslať email
@@ -307,7 +307,7 @@ class HomeController extends Controller
               //Retrieve the user from the database
               $user = Customer::where('email', $email)->select('fname', 'email')->first();
               //Generate, the password reset link. The token generated is embedded in the link
-              $link = "https://app.leadix.sk/" . 'password/reset/' . $token . '/' . urlencode($user->email);
+              $link = "https://dobroty.physcatch.sk/" . 'password/reset/' . $token . '/' . urlencode($user->email);
 
                   try {
                     //poslať email

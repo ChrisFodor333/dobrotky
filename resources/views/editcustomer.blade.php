@@ -340,7 +340,7 @@ padding: 0rem;
 													 <div class="swal2-success-ring"></div> <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
 													 <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
 												 </div>
-													<div class="swal2-html-container mt-8" id="swal2-html-container" style="display: block;">Zákazník sa vytvára</div>
+													<div class="swal2-html-container mt-8" id="swal2-html-container" style="display: block;">Zákazník sa aktualizuje!</div>
 											 </div>
 									 </div>
                   </div>

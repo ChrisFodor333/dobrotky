@@ -204,5 +204,4 @@
 		<!--end::Scrolltop-->
 
 @include('footer')
-<script src="<?php echo url('/');?>/charts_admin.js"></script>
 <script src="<?php echo url('/');?>/assets/js/custom/apps/projects/list/list.js"></script>

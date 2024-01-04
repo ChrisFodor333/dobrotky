@@ -8,7 +8,7 @@ var KTProjectList = {
 
                 // Add AJAX call here
                 $.ajax({
-                    url: 'http://localhost/dobrotky/public/chartdata',
+                    url: 'https://dobroty.physcatch.sk/chartdata',
                     method: 'GET',
                     dataType: 'json',
                     success: function (data) {

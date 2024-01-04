@@ -287,5 +287,19 @@ var table = $("#kt_table_customers_payment").DataTable({
       }
   	},
     "info": false,
+     "order": [[1, 'desc']],
+     "columnDefs": [
+    {
+      "type": "date",
+      "targets": 1,
+      "render": function (data, type, row) {
+        // Assuming the date format is DD/MM/YYYY HH:mm:ss
+        if (type === 'sort' || type === 'type') {
+          return moment(data, "DD/MM/YYYY", false).toDate();
+        }
+        return moment(data, "DD/MM/YYYY", false).format("DD/MM/YYYY");
+      }
+    }
+  ],
   });
 </script>

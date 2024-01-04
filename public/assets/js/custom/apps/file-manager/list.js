@@ -236,7 +236,7 @@ var KTFileManagerList = (function () {
                                    r.emit("complete", file);
                                    clearInterval(interval);
                                    $.ajax({
-                                       url: 'http://localhost/dobrotky/public/addmenu',
+                                       url: 'https://dobroty.physcatch.sk/addmenu',
                                        type: 'POST',
                                        data: formData,
                                        processData: false,  // Don't process the data (already FormData)
