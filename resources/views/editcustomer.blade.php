@@ -343,6 +343,19 @@ padding: 0rem;
 													<div class="swal2-html-container mt-8" id="swal2-html-container" style="display: block;">Zákazník sa aktualizuje!</div>
 											 </div>
 									 </div>
+
+                   <div class="savemodal" style="display: none !important;" id="errorModal2">
+                      <div class="savemodal-content">
+                        <div class="swal2-icon swal2-error swal2-icon-show" style="display: flex;">
+                             <span class="swal2-x-mark">
+                                 <span class="swal2-x-mark-line-left"></span>
+                                 <span class="swal2-x-mark-line-right"></span>
+                             </span>
+                         </div>
+                         <div class="swal2-html-container mt-8" id="swal2-html-container" style="display: block;">Prosím vyplňte povinné polia označené hviezdičkou!</div>
+                         <button type="button" onclick="hidemodal2()" class="btn btn-light btn-sm btn-light-primary mt-2">Chápem!</button>
+                      </div>
+                  </div>
                   </div>
 									<!--end::Card body-->
 								</div>
@@ -378,12 +391,25 @@ function hidemodal() {
     const successModal = document.getElementById("errorModal");
     successModal.setAttribute('style', 'display:none !important');
 }
+function hidemodal2() {
+    const successModal = document.getElementById("errorModal2");
+    successModal.setAttribute('style', 'display:none !important');
+}
 </script>
 
 
 <script type="text/javascript">
 document.getElementById("myForm").addEventListener("submit", function (e) {
     e.preventDefault();
+
+    var lname = $('input[name="lname"]').val();
+    var fname = $('input[name="fname"]').val();
+    var email = $('input[name="email"]').val();
+
+    const errorModal2 = document.getElementById("errorModal2");
+    if(lname.length < 1 || fname.length < 1 || email.length < 1) {
+      errorModal2.setAttribute('style', 'display:flex !important');
+    } else {
 
     const successModal = document.getElementById("successModal");
     successModal.setAttribute('style', 'display:flex !important');
@@ -392,7 +418,9 @@ document.getElementById("myForm").addEventListener("submit", function (e) {
     setTimeout(function () {
         successModal.style.display = "none";
         document.getElementById("myForm").submit();
-    }, 1500); // 3 seconds
+    }, 1500);
+
+  }
 });
 
 </script>

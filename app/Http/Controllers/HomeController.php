@@ -21,6 +21,7 @@ use App\Models\Newpass;
 
 use App\Mail\PasswordReset;
 use App\Mail\NewPassMail;
+use Illuminate\Support\Str;
 
 
 class HomeController extends Controller
@@ -272,7 +273,7 @@ class HomeController extends Controller
       //Create Password Reset Token
       PasswordResets::insert([
           'email' => $request->input('email'),
-          'token' => str_random(60),
+          'token' => Str::random(60),
           'created_at' => Carbon::now()
       ]);
       //Get the token just created above
@@ -399,7 +400,7 @@ class HomeController extends Controller
                 $filePath = $file->storeAs('public', 'menu.pdf');
 
 
-                 return response()->json(['redirect_url' => 'http://localhost/dobrotky/public/menu']);
+                 return response()->json(['redirect_url' => 'https://dobroty.physcatch.sk/menu']);
               }
             }
 
@@ -601,7 +602,7 @@ public function editedcustomer(Request $request) {
 
                                 Newpass::insert([
                                     'email' => $email,
-                                    'token' => str_random(60),
+                                    'token' => Str::random(60),
                                     'created_at' => Carbon::now()
                                 ]);
                                 //Get the token just created above

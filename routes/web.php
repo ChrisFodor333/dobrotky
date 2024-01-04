@@ -52,6 +52,7 @@ Route::get('/upravitprogram/{id}', array('uses' => 'App\\Http\\Controllers\HomeC
 Route::post('/programchanged', array('uses' => 'App\\Http\\Controllers\HomeController@programchanged'));
 
 
+Route::get('/addcustomer', array('uses' => 'App\\Http\\Controllers\HomeController@showaddcustomer'));
 Route::post('/customeradded', array('uses' => 'App\\Http\\Controllers\HomeController@addcustomer'));
 
 Route::post('/addmenu', array('uses' => 'App\\Http\\Controllers\HomeController@addmenu'));
