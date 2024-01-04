@@ -513,6 +513,29 @@ public function editedcustomer(Request $request) {
 
 
 
+
+                public function programchanged(Request $request) {
+                                    if(!session()->has('admin')) {
+                                     return Redirect::to('/')->withErrors(['status' => 'Relácia skončila, boli ste odhlásený!']);
+                                  }
+                                  else {
+
+                                          $program = Requests::get('program');
+                                          $expiration = Requests::get('expiration');
+                                          $id = Requests::get('id');
+
+                                          $p = Program::where("id","=",$id)->get()->first();
+
+                                          $p->program = $program;
+                                          $p->expiration = $expiration;
+
+                                          $p->update();
+                                          return Redirect::to('/programy/'.$id);
+
+                                  }
+                                }
+
+
       public function addcustomer(Request $request) {
                           if(!session()->has('admin')) {
                            return Redirect::to('/')->withErrors(['status' => 'Relácia skončila, boli ste odhlásený!']);
@@ -657,6 +680,16 @@ public function editedcustomer(Request $request) {
                         return Redirect::to('/');
                     }
               }
+
+              public function upravitprogram($id) {
+                        if(session()->has('admin')) {
+                          $program = Program::where("id","=",$id)->get()->first();
+                          $data['program'] = $program;
+                          return view('editprogram', $data);
+                        } else {
+                            return Redirect::to('/');
+                        }
+                  }
 
 
       public function check_email($email) {
