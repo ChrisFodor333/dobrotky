@@ -328,6 +328,11 @@ class HomeController extends Controller
                       return view('reset', $data);
               }
 
+    public function vitajte() {
+              return view('vitajte');
+              }
+
+
   public function newpass($key, $email) {
                     $data['key'] = $key;
                     $data['email'] = $email;
